@@ -1,27 +1,35 @@
 import React, { Component } from "react";
-import MovieOverview from "./Components/MovieOverview";
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import styled from 'styled-components';
 import SearchPage from "./Components/SearchPage";
 import query from "./Services/query";
-import "./App.css";
 import CardsContainer from "./Components/CardsContainer";
 import MovieFullView from "./Components/MovieFullView";
-import RatingDisplay from "./Components/RatingDisplay";
+import "./App.css";
+
+const FullOverlayNothingFound = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: #081b23;
+  z-index: 1000;
+`;
 
 const RouteGenetrator = props => {
   if (props.data) {
     return props.data.map(item => (
       <Route
-        path={`/movie/${item.id}`}
+        path={`/movie/*`}
         key={item.id}
-        component={() => <MovieFullView item={item} />}
+        component={({ match }) => <MovieFullView match={match}/>}
       />
     ));
   } else {
     return (
       <Route
         component={() => {
-          return <div>sdfsd</div>;
+          console.log('nothing ofund');
+          return <FullOverlayNothingFound>Invalid Route</FullOverlayNothingFound>;
         }}
       />
     );
@@ -62,7 +70,6 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <RatingDisplay lowRatingColor="blue" highRatingColor="green" midRatingColor="yellow" rating={4} />
         <div class="content-wrapper">
           <div className="header-search-container">
             <div className="header-search">
@@ -70,8 +77,6 @@ class App extends Component {
             </div>
           </div>
           <div className="body-display">
-            {/* <MovieOverview item={{title: "slkd", year: "sldkf", imageUrl: "https://ssss"}} /> */}
-            {/* <Link to="/view">View</Link> */}
             <Switch>
               <Route
                 exact

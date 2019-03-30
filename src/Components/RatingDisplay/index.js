@@ -1,9 +1,20 @@
 import React from 'react';
-import { styled } from '@material-ui/core/styles';
+import styled from 'styled-components';
+import propTypes from 'prop-types';
 
-const styledSpan = styled('span')((props) => {console.log(props) ;return {backgroundColor: "green"}} )
+const StyledSpan = styled("span")`
+  background-color: ${props => props.ratingColor};
+  display: block;
+  padding: 3px 9px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+`;
+
 const RatingDisplay = props => {
-    const { classes, lowRatingColor, midRatingColor, highRatingColor, rating } = props;
+    const { lowRatingColor, midRatingColor, highRatingColor, rating } = props;
     let stdRating = rating * 10;
     let ratingColor = midRatingColor;
     if (stdRating < 30) {
@@ -11,8 +22,23 @@ const RatingDisplay = props => {
     } else if (stdRating > 80) {
         ratingColor = highRatingColor;
     }
+    console.log(ratingColor);
     
-    return <styledSpan color={ratingColor} className={classes.root}>{stdRating}</styledSpan>
+    return <StyledSpan ratingColor={ratingColor}>{stdRating}%</StyledSpan>
 };
+
+RatingDisplay.propTypes = {
+  lowRatingColor: propTypes.string,
+  midRatingColor: propTypes.string,
+  highRatingColor: propTypes.string,
+  rating: propTypes.number.isRequired,
+};
+
+RatingDisplay.defaultProps = {
+  lowRatingColor: '#D1225B',
+  midRatingColor: '#4902A3',
+  highRatingColor: '#01D277',
+
+}
 
 export default RatingDisplay;

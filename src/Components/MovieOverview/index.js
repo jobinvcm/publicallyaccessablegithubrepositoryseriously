@@ -1,8 +1,9 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
+import Moment from "react-moment";
 import propTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { isAbsolute } from "path";
+import RatingDisplay from "../RatingDisplay";
 
 const styles = theme => ({
   root: {
@@ -14,24 +15,29 @@ const styles = theme => ({
     verticalAlign: "bottom",
     display: "block"
   },
-  text: {
-    color: "#fff",
-    textDecoration: "none"
+  textTitle: {
+    color: "#E6F7FF",
+    textDecoration: "none",
+    fontSize: "14px",
+    lineHeight: "16px",
+    marginBottom: "8px"
+  },
+  textDate: {
+    color: '#A1D1E6',
+    textDecoration: "none",
+    fontSize: "12px",
+    lineHeight: "14px",
   },
   imageContainer: {
-    borderRadius: "5px",
+    borderRadius: "8px",
     overflow: "hidden",
-    position: "relative"
+    position: "relative",
+    marginBottom: "12px"
   },
   rating: {
     position: "absolute",
-    top: "10px",
-    left: "10px",
-    padding: "2px 8px",
-    fontSize: "12px",
-    color: "#fff",
-    backgroundColor: "orange",
-    borderRadius: "6px"
+    top: "4px",
+    left: "4px"
   }
 });
 
@@ -41,11 +47,13 @@ const MovieOverview = props => {
   return (
     <div>
       <Paper className={classes.imageContainer} elevation={10}>
-        <span className={classes.rating}>{props.item.vote_average * 10}</span>
+        <div className={classes.rating}>
+          <RatingDisplay rating={props.item.vote_average} />
+        </div>
         <img className={classes.image} src={imageUrl} />
       </Paper>
-      <div className={classes.text}>{props.item.title}</div>
-      <div className={classes.text}>{props.item.release_date}</div>
+      <div className={classes.textTitle}>{props.item.title}</div>
+      <div className={classes.textDate}>{<Moment format="MMMM YYYY">{new Date(props.item.release_date)}</Moment>}</div>
     </div>
   );
 };
