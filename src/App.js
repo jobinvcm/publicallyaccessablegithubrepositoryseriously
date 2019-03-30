@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 import SearchPage from "./Components/SearchPage";
 import query from "./Services/query";
 import CardsContainer from "./Components/CardsContainer";
@@ -15,21 +15,34 @@ const FullOverlayNothingFound = styled.div`
   z-index: 1000;
 `;
 
+const PopularTitle = styled.div`
+  font-weight : bold;
+  font-family: Montserrat;
+  font-size: 20px;
+  line-height: 24px;
+  color: #E3F4FC;
+  position: relative;
+  z-index: 100;
+  padding-bottom: 12px;
+`;
+
 const RouteGenetrator = props => {
   if (props.data) {
     return props.data.map(item => (
       <Route
         path={`/movie/*`}
         key={item.id}
-        component={({ match }) => <MovieFullView match={match}/>}
+        component={({ match }) => <MovieFullView match={match} />}
       />
     ));
   } else {
     return (
       <Route
         component={() => {
-          console.log('nothing ofund');
-          return <FullOverlayNothingFound>Invalid Route</FullOverlayNothingFound>;
+          console.log("nothing ofund");
+          return (
+            <FullOverlayNothingFound>Invalid Route</FullOverlayNothingFound>
+          );
         }}
       />
     );
@@ -39,7 +52,7 @@ const RouteGenetrator = props => {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", data: "" };
+    this.state = { input: "", data: "", query: "" };
     this.onUpdateInput = this.onUpdateInput.bind(this);
     this.initialQuery = this.initialQuery.bind(this);
   }
@@ -48,6 +61,7 @@ class App extends Component {
     let queryBuilt = query("movie/popular");
     queryBuilt.then(res => {
       this.setState({ data: res.data.results });
+      this.setState({ query: "popular" });
     });
   }
 
@@ -56,9 +70,9 @@ class App extends Component {
       let queryBuilt = query("search/movie", { query: e.target.value });
       queryBuilt.then(res => {
         this.setState({ data: res.data.results });
+        this.setState({ query: "movies" });
       });
-    }
-    else {
+    } else {
       this.initialQuery();
     }
   }
@@ -77,6 +91,9 @@ class App extends Component {
             </div>
           </div>
           <div className="body-display">
+            {this.state.query && this.state.query === "popular" && (
+              <PopularTitle>Popular Movies</PopularTitle>
+            )}
             <Switch>
               <Route
                 exact
