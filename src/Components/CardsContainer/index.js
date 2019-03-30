@@ -7,9 +7,11 @@ import MovieOverview from "../MovieOverview";
 
 const styles = theme => {
   return {
-    gridImage: {
-      minWidth: "100%",
-      verticalAlign: "bottom"
+    link: {
+      textDecoration: "none"
+    },
+    gridItem: {
+      paddingLeft: "8px"
     }
   };
 };
@@ -21,15 +23,9 @@ const CardsContainer = props => {
       <Grid container spacing={24}>
         {props.data.map(item => {
           return (
-            <Grid
-              item
-              xs={6}
-              sm={3}
-              lg={2}
-              key={item.id}
-            >
-              <Link to={`/movie/${item.id}`}>
-                <MovieOverview item={item}/>
+            <Grid className={classes.gridItem} item xs={6} sm={3} lg={2} key={item.id}>
+              <Link className={classes.link} to={`/movie/${item.id}`}>
+                <MovieOverview item={item} />
               </Link>
             </Grid>
           );

@@ -6,6 +6,7 @@ import query from "./Services/query";
 import "./App.css";
 import CardsContainer from "./Components/CardsContainer";
 import MovieFullView from "./Components/MovieFullView";
+import RatingDisplay from "./Components/RatingDisplay";
 
 const RouteGenetrator = props => {
   if (props.data) {
@@ -27,20 +28,19 @@ const RouteGenetrator = props => {
   }
 };
 
-// const LinkGenerator = (props) => {
-//   if (props.data) {
-//     return props.data.map(item => <Link key={item.id} to={`/movie/${item.id}`}><MovieOverview item={{title: item.original_title, year: item.release_date, imageUrl: item.poster_path}} /></Link>)
-//   }
-//   else {
-//     return <div>Nothing</div>
-//   }
-// }
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { input: "", data: "" };
     this.onUpdateInput = this.onUpdateInput.bind(this);
+    this.initialQuery = this.initialQuery.bind(this);
+  }
+
+  initialQuery() {
+    let queryBuilt = query("movie/popular");
+    queryBuilt.then(res => {
+      this.setState({ data: res.data.results });
+    });
   }
 
   onUpdateInput(e) {
@@ -50,11 +50,19 @@ class App extends Component {
         this.setState({ data: res.data.results });
       });
     }
+    else {
+      this.initialQuery();
+    }
+  }
+
+  componentDidMount() {
+    this.initialQuery();
   }
 
   render() {
     return (
       <BrowserRouter>
+        <RatingDisplay lowRatingColor="blue" highRatingColor="green" midRatingColor="yellow" rating={4} />
         <div class="content-wrapper">
           <div className="header-search-container">
             <div className="header-search">
