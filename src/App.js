@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import SearchPage from "./Components/SearchPage";
 import query from "./Services/query";
@@ -7,26 +7,18 @@ import CardsContainer from "./Components/CardsContainer";
 import MovieFullView from "./Components/MovieFullView";
 import "./App.css";
 
-const FullOverlayNothingFound = styled.div`
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  background-color: #081b23;
-  z-index: 1000;
-`;
-
 const PopularTitle = styled.div`
-  font-weight : bold;
+  font-weight: bold;
   font-family: Montserrat;
   font-size: 20px;
   line-height: 24px;
-  color: #E3F4FC;
+  color: #e3f4fc;
   position: relative;
   z-index: 100;
   padding-bottom: 12px;
 `;
 
-const RouteGenetrator = props => {
+const RouteGenerator = props => {
   if (props.data) {
     return props.data.map(item => (
       <Route
@@ -35,15 +27,11 @@ const RouteGenetrator = props => {
         component={({ match }) => <MovieFullView match={match} />}
       />
     ));
-  } else {
+  }
+  else {
     return (
       <Route
-        component={() => {
-          console.log("nothing ofund");
-          return (
-            <FullOverlayNothingFound>Invalid Route</FullOverlayNothingFound>
-          );
-        }}
+        component={() => <div>Invalid Route</div>}
       />
     );
   }
@@ -52,7 +40,7 @@ const RouteGenetrator = props => {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", data: "", query: "" };
+    this.state = { input: "", data: "", query: "", location: "" };
     this.onUpdateInput = this.onUpdateInput.bind(this);
     this.initialQuery = this.initialQuery.bind(this);
   }
@@ -66,6 +54,7 @@ class App extends Component {
   }
 
   onUpdateInput(e) {
+
     if (e.target.value) {
       let queryBuilt = query("search/movie", { query: e.target.value });
       queryBuilt.then(res => {
@@ -78,6 +67,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.setState({location: "/"});
     this.initialQuery();
   }
 
@@ -87,11 +77,11 @@ class App extends Component {
         <div class="content-wrapper">
           <div className="header-search-container">
             <div className="header-search">
-              <SearchPage onChange={this.onUpdateInput} />
+              <SearchPage onChange={this.onUpdateInput} location={this.state.location}/>
             </div>
           </div>
           <div className="body-display">
-            {this.state.query && this.state.query === "popular" && (
+            {this.state.query && this.state.query === "popular" && (window.location.pathname === "/") && (
               <PopularTitle>Popular Movies</PopularTitle>
             )}
             <Switch>
@@ -102,7 +92,7 @@ class App extends Component {
                   <CardsContainer data={this.state.data} location={location} />
                 )}
               />
-              {<RouteGenetrator data={this.state.data} />}
+              {<RouteGenerator data={this.state.data} />}
             </Switch>
           </div>
         </div>
