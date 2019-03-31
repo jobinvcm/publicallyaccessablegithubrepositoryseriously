@@ -1,18 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieOverview /> renders paper component 1`] = `
+exports[`<SearchPage /> renders paper component 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <WithStyles(MovieOverview)
-    item={
-      Object {
-        "imageUrl": "http://testimage",
-        "release_date": "December 2016",
-        "title": "test title",
-        "vote_average": 4.5,
-      }
-    }
-  />,
+  Symbol(enzyme.__unrendered__): <WithStyles(SearchPage) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "checkPropTypes": [Function],
@@ -28,18 +19,11 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "classes": Object {
-        "image": "MovieOverview-image-2",
-        "imageContainer": "MovieOverview-imageContainer-5",
-        "rating": "MovieOverview-rating-6",
-        "root": "MovieOverview-root-1",
-        "textDate": "MovieOverview-textDate-4",
-        "textTitle": "MovieOverview-textTitle-3",
-      },
-      "item": Object {
-        "imageUrl": "http://testimage",
-        "release_date": "December 2016",
-        "title": "test title",
-        "vote_average": 4.5,
+        "container": "SearchPage-container-1",
+        "iconButton": "SearchPage-iconButton-4",
+        "inputBase": "SearchPage-inputBase-3",
+        "paperContainer": "SearchPage-paperContainer-5",
+        "root": "SearchPage-root-2",
       },
     },
     "ref": null,
@@ -53,18 +37,11 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "classes": Object {
-          "image": "MovieOverview-image-2",
-          "imageContainer": "MovieOverview-imageContainer-5",
-          "rating": "MovieOverview-rating-6",
-          "root": "MovieOverview-root-1",
-          "textDate": "MovieOverview-textDate-4",
-          "textTitle": "MovieOverview-textTitle-3",
-        },
-        "item": Object {
-          "imageUrl": "http://testimage",
-          "release_date": "December 2016",
-          "title": "test title",
-          "vote_average": 4.5,
+          "container": "SearchPage-container-1",
+          "iconButton": "SearchPage-iconButton-4",
+          "inputBase": "SearchPage-inputBase-3",
+          "paperContainer": "SearchPage-paperContainer-5",
+          "root": "SearchPage-root-2",
         },
       },
       "ref": null,

@@ -22,7 +22,6 @@ const RatingDisplay = props => {
     } else if (stdRating > 80) {
         ratingColor = highRatingColor;
     }
-    console.log(ratingColor);
     
     return <StyledSpan ratingColor={ratingColor}>{stdRating}%</StyledSpan>
 };

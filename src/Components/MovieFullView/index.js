@@ -19,7 +19,10 @@ const styles = theme => ({
     overflowY: "scroll",
     backgroundColor: "#081B23",
     transition: "all .5s ease",
-    zIndex: "100"
+    zIndex: "100",
+    [theme.breakpoints.up("md")]: {
+      overflow: "hidden"
+    }
   },
   profileImageContainer: {
     maxWidth: "140px",
@@ -47,7 +50,7 @@ const styles = theme => ({
     display: "block",
     minWidth: "100%",
     minHeight: "100%",
-    width: "100%"
+    width: "100%",
   },
   notFound: {
     color: "#fff"
@@ -81,7 +84,9 @@ const styles = theme => ({
     display: "inline-block",
     width: "60%",
     verticalAlign: "top",
-    padding: "24px 0"
+    padding: "24px 0",
+    position: "relative",
+    left: "12px"
   },
   itemTitle: {
     fontFamily: "Montserrat",
@@ -120,7 +125,9 @@ const styles = theme => ({
     padding: "100px 24px "
   },
   details: {
+    minHeight: "750px",
     [theme.breakpoints.up("md")]: {
+      minHeight: "auto",
       position: "fixed",
       bottom: "10%",
       maxWidth: "960px",
@@ -146,17 +153,15 @@ class MovieFullView extends React.Component {
         this.setState({ item: res.data });
       })
       .catch(function(error) {
-        console.log(this);
         _this.setState({ error: "Cant Find Movie..." });
       });
   }
 
   componentDidMount() {
-    this.buildQuery(this.props.match.params[0]);
+    this.buildQuery(this.props.match.params.id);
   }
 
   render() {
-    console.log(this.props)
     const { classes } = this.props;
     const { item } = this.state;
     let imageUrl = `https://image.tmdb.org/t/p/w185/${item.poster_path}`;

@@ -61,8 +61,9 @@ const MovieOverview = props => {
 MovieOverview.propTypes = {
   item: propTypes.shape({
     imageUrl: propTypes.string,
-    title: propTypes.string,
-    year: propTypes.string
+    title: propTypes.string.isRequired,
+    release_date: propTypes.string.isRequired,
+    vote_average: propTypes.number.isRequired,
   })
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 import SearchPage from "./Components/SearchPage";
 import query from "./Services/query";
@@ -19,22 +19,14 @@ const PopularTitle = styled.div`
 `;
 
 const RouteGenerator = props => {
-  if (props.data) {
-    return props.data.map(item => (
+  return (
+    <>
       <Route
-        path={`/movie/*`}
-        key={item.id}
+        path={`/movie/:id`}
         component={({ match }) => <MovieFullView match={match} />}
       />
-    ));
-  }
-  else {
-    return (
-      <Route
-        component={() => <div>Invalid Route</div>}
-      />
-    );
-  }
+    </>
+  );
 };
 
 class App extends Component {
@@ -54,7 +46,6 @@ class App extends Component {
   }
 
   onUpdateInput(e) {
-
     if (e.target.value) {
       let queryBuilt = query("search/movie", { query: e.target.value });
       queryBuilt.then(res => {
@@ -67,23 +58,28 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({location: "/"});
+    this.setState({ location: "/" });
     this.initialQuery();
   }
 
   render() {
     return (
       <BrowserRouter>
-        <div class="content-wrapper">
+        <div className="content-wrapper">
           <div className="header-search-container">
             <div className="header-search">
-              <SearchPage onChange={this.onUpdateInput} location={this.state.location}/>
+              <SearchPage
+                onChange={this.onUpdateInput}
+                location={this.state.location}
+              />
             </div>
           </div>
           <div className="body-display">
-            {this.state.query && this.state.query === "popular" && (window.location.pathname === "/") && (
-              <PopularTitle>Popular Movies</PopularTitle>
-            )}
+            {this.state.query &&
+              this.state.query === "popular" &&
+              window.location.pathname === "/" && (
+                <PopularTitle>Popular Movies</PopularTitle>
+              )}
             <Switch>
               <Route
                 exact

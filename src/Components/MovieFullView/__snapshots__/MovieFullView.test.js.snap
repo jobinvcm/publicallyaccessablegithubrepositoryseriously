@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieFullView /> renders paper component 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WithStyles(MovieFullView) />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "classes": Object {
+        "backgroundImage": "MovieFullView-backgroundImage-4",
+        "backgroundImageContainer": "MovieFullView-backgroundImageContainer-3",
+        "details": "MovieFullView-details-17",
+        "goBackIcon": "MovieFullView-goBackIcon-7",
+        "goBackLink": "MovieFullView-goBackLink-8",
+        "infoDetailsSection": "MovieFullView-infoDetailsSection-11",
+        "infoImageSection": "MovieFullView-infoImageSection-10",
+        "infoSection": "MovieFullView-infoSection-9",
+        "itemDetails": "MovieFullView-itemDetails-13",
+        "itemTitle": "MovieFullView-itemTitle-12",
+        "notFound": "MovieFullView-notFound-6",
+        "overviewContainer": "MovieFullView-overviewContainer-15",
+        "overviewDetails": "MovieFullView-overviewDetails-16",
+        "overviewTitle": "MovieFullView-overviewTitle-14",
+        "profileImage": "MovieFullView-profileImage-5",
+        "profileImageContainer": "MovieFullView-profileImageContainer-2",
+        "root": "MovieFullView-root-1",
+      },
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "classes": Object {
+          "backgroundImage": "MovieFullView-backgroundImage-4",
+          "backgroundImageContainer": "MovieFullView-backgroundImageContainer-3",
+          "details": "MovieFullView-details-17",
+          "goBackIcon": "MovieFullView-goBackIcon-7",
+          "goBackLink": "MovieFullView-goBackLink-8",
+          "infoDetailsSection": "MovieFullView-infoDetailsSection-11",
+          "infoImageSection": "MovieFullView-infoImageSection-10",
+          "infoSection": "MovieFullView-infoSection-9",
+          "itemDetails": "MovieFullView-itemDetails-13",
+          "itemTitle": "MovieFullView-itemTitle-12",
+          "notFound": "MovieFullView-notFound-6",
+          "overviewContainer": "MovieFullView-overviewContainer-15",
+          "overviewDetails": "MovieFullView-overviewDetails-16",
+          "overviewTitle": "MovieFullView-overviewTitle-14",
+          "profileImage": "MovieFullView-profileImage-5",
+          "profileImageContainer": "MovieFullView-profileImageContainer-2",
+          "root": "MovieFullView-root-1",
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

@@ -1,11 +1,10 @@
 import React from "react";
-import Input from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
-import IconButton from '@material-ui/core/IconButton';
-
+import IconButton from "@material-ui/core/IconButton";
+import propTypes from "prop-types";
 
 const styles = theme => ({
   container: {
@@ -40,13 +39,12 @@ const styles = theme => ({
 });
 
 const SearchPage = props => {
-  const { classes } = props;
+  const { classes, onChange } = props;
   return (
     <div className={classes.container}>
       <Paper elevation={20} className={classes.paperContainer}>
-        <InputBase className={classes.inputBase} onChange={props.onChange} placeholder="Search Movies" />
+        <InputBase className={classes.inputBase} onChange={onChange} placeholder="Search Movies" />
         <IconButton
-          color="accent"
           className={classes.iconButton}
           aria-label="Search"
         >
@@ -56,4 +54,9 @@ const SearchPage = props => {
     </div>
   );
 };
+
+SearchPage.propTypes = {
+  classes: propTypes.object,
+}
+
 export default withStyles(styles)(SearchPage);
