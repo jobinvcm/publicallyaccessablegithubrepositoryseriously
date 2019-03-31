@@ -20,12 +20,8 @@ const styles = theme => {
   };
 };
 
-const RenderComponent = (ItemComponent, item) => {
-  return <ItemComponent item={item} />;
-};
-
 const CardsContainer = props => {
-  const { classes, data, ItemComponent } = props;
+  const { classes, data, type, ItemComponent } = props;
   if (data.length) {
     return (
       <Grid container spacing={24} className={classes.gridContainer}>
@@ -39,8 +35,8 @@ const CardsContainer = props => {
               lg={2}
               key={item.id}
             >
-              <Link className={classes.link} to={`/movie/${item.id}`}>
-                {RenderComponent(ItemComponent, item)}
+              <Link className={classes.link} to={`/${type}/${item.id}`}>
+                {<ItemComponent item={item} />}
               </Link>
             </Grid>
           );
