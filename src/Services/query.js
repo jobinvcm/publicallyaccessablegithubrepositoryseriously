@@ -2,8 +2,8 @@ import Axios from "axios";
 
 const query = (queryType, params) => {
   let queryUrl = "https://api.themoviedb.org/3/";
-  let apiKey = "?api_key=";
-  let queryBuilt = `${queryUrl}${queryType}${apiKey}`;
+  let apiKey = "key_goes_here";
+  let queryBuilt = `${queryUrl}${queryType}?api_key=${apiKey}`;
 
   let queryResult = Axios.get(queryBuilt, {
     params
