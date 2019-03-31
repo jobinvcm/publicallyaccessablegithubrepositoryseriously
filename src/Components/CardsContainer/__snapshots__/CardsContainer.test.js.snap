@@ -29,6 +29,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "ItemComponent": [Function],
       "classes": Object {
         "gridContainer": "CardsContainer-gridContainer-3",
         "gridItem": "CardsContainer-gridItem-2",
@@ -42,6 +43,7 @@ ShallowWrapper {
           "vote_average": 4.5,
         },
       },
+      "type": "movie",
     },
     "ref": null,
     "rendered": null,
@@ -53,6 +55,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "ItemComponent": [Function],
         "classes": Object {
           "gridContainer": "CardsContainer-gridContainer-3",
           "gridItem": "CardsContainer-gridItem-2",
@@ -66,6 +69,7 @@ ShallowWrapper {
             "vote_average": 4.5,
           },
         },
+        "type": "movie",
       },
       "ref": null,
       "rendered": null,

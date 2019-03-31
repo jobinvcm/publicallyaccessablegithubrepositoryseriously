@@ -15,21 +15,32 @@ const styles = theme => {
     },
     gridContainer: {
       position: "relative",
-      zIndex: "10",
+      zIndex: "10"
     }
   };
 };
 
+const RenderComponent = (ItemComponent, item) => {
+  return <ItemComponent item={item} />;
+};
+
 const CardsContainer = props => {
-  const { classes, data } = props;
+  const { classes, data, ItemComponent } = props;
   if (data.length) {
     return (
       <Grid container spacing={24} className={classes.gridContainer}>
         {data.map(item => {
           return (
-            <Grid className={classes.gridItem} item xs={6} sm={4} lg={2} key={item.id}>
+            <Grid
+              className={classes.gridItem}
+              item
+              xs={6}
+              sm={4}
+              lg={2}
+              key={item.id}
+            >
               <Link className={classes.link} to={`/movie/${item.id}`}>
-                <MovieOverview item={item} />
+                {RenderComponent(ItemComponent, item)}
               </Link>
             </Grid>
           );
@@ -43,6 +54,13 @@ const CardsContainer = props => {
 
 CardsContainer.propTypes = {
   classes: propTypes.object,
-}
+  type: propTypes.string,
+  ItemComponent: propTypes.func
+};
+
+CardsContainer.defaultProps = {
+  type: "movie",
+  ItemComponent: MovieOverview
+};
 
 export default withStyles(styles)(CardsContainer);
