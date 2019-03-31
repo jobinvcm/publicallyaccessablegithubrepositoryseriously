@@ -52,9 +52,6 @@ const styles = theme => ({
     minHeight: "100%",
     width: "100%",
   },
-  notFound: {
-    color: "#fff"
-  },
   goBackIcon: {
     position: "absolute",
     top: "16px",
@@ -121,6 +118,7 @@ const styles = theme => ({
     lineHeight: "24px"
   },
   notFound: {
+    color: "#fff",
     fontSize: "24px",
     padding: "100px 24px "
   },
@@ -190,7 +188,7 @@ class MovieFullView extends React.Component {
                     className={classes.profileImageContainer}
                     elevation={12}
                   >
-                    <img className={classes.profileImage} src={imageUrl} />
+                    <img alt={item.title} className={classes.profileImage} src={imageUrl} />
                   </Paper>
                 </div>
                 <div className={classes.infoDetailsSection}>
@@ -233,6 +231,10 @@ class MovieFullView extends React.Component {
       </div>
     );
   }
+}
+
+MovieFullView.propTypes = {
+  classes: propTypes.object,
 }
 
 export default withStyles(styles)(MovieFullView);

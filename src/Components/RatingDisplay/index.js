@@ -37,7 +37,6 @@ RatingDisplay.defaultProps = {
   lowRatingColor: '#D1225B',
   midRatingColor: '#4902A3',
   highRatingColor: '#01D277',
-
 }
 
 export default RatingDisplay;

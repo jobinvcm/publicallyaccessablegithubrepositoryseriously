@@ -8,7 +8,7 @@ const mockItem = {
   release_date: "December 2016",
   imageUrl: "http://testimage",
   vote_average: 4.5
-}
+};
 
 describe('<MovieOverview />', () => {
   it('renders paper component', () => {
